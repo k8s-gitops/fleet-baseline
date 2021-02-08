@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: opa-allowed
+spec:
+  containers:
+    - name: nginx
+      image: public.ecr.aws/nginx/nginx
+      resources:
+        limits:
+          cpu: "100m"
+          memory: "30Mi"
