@@ -1,0 +1,50 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: dev-cluster-2
+  region: eu-west-1
+  version: "1.18"
+
+nodeGroups:
+  - name: dev-cluster-1001-stateless
+    instanceType: m5.large
+    desiredCapacity: 3
+    maxSize: 5
+    minSize: 3
+    privateNetworking: true
+    ssh:
+      allow: true # will use ~/.ssh/id_rsa.pub as the default ssh key
+    iam:
+      withAddonPolicies:
+        imageBuilder: true
+        autoScaler: true
+  - name: dev-cluster-1005-appmesh
+    instanceType: m5.large
+    desiredCapacity: 0
+    minSize: 0
+    maxSize: 0
+    iam:
+      withAddonPolicies:
+        albIngress: true
+        appMesh: true
+        xRay: true
+        cloudWatch: true
+
+vpc:
+  cidr: 11.1.0.0/16
+  #autoAllocateIPv6: true #This fails to delete
+  # disable public access to endpoint and only allow private access
+  clusterEndpoints:
+    publicAccess: true
+    privateAccess: true
+  nat:
+    gateway: HighlyAvailable # other options: Disable, Single (defaul
+
+cloudWatch:
+  clusterLogging:
+    # enable specific types of cluster control plane logs
+    enableTypes: ["audit", "authenticator", "controllerManager", "scheduler", "api"]
+    # all supported types: "api", "audit", "authenticator", "controllerManager", "scheduler"
+    # supported special values: "*" and "all"
+

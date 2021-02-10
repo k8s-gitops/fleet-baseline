@@ -17,6 +17,10 @@ This is tied to a bigger `SecureByDefault PaaS` Project
 * **infrastructure** - common policies and addons across multiple clusters
 * **tenants** - applications dev teams
 
+## Cheatsheet
+
+|----|
+flux logs kubectl logs deploy/kustomize-controller -n flux-system
 ## Compliance
 
 NIST
@@ -42,3 +46,12 @@ flux bootstrap github \
   --repository=${GITHUB_REPO} \
   --path=clusters/init-cluster
 ```
+
+**Access Weave Scope**
+```
+kubectl -n kube-system port-forward $(kubectl -n kube-system get endpoints \
+weave-scope-weave-scope -o jsonpath='{.subsets[0].addresses[0].targetRef.name}') 8080:4040
+```
+
+## Update Gatekeeper System
+Go to 
