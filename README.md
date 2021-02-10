@@ -26,8 +26,10 @@ This is tied to a bigger `SecureByDefault PaaS` Project
 * view the weavescope `kubectl -n kube-system port-forward $(kubectl -n kube-system get endpoints weave-scope-weave-scope -o jsonpath='{.subsets[0].addresses[0].targetRef.name}') 8080:4040`
 * helm list `helm list -A`
 * helm get  `helm get <nameofrelease> -n <namespace>`
-* kubei logs `kubectl -n kubei get pod -lapp=kubei`
-
+* kubei get `kubectl -n kubei get pod -lapp=kubei`
+* kubei pf `kubectl -n kubei port-forward $(kubectl -n kubei get pods -lapp=kubei -o jsonpath='{.items[0].metadata.name}') 8080`
+* kubei logs `kubectl -n kubei logs $(kubectl -n kubei get pods -lapp=kubei -o jsonpath='{.items[0].metadata.name}')`
+* kubei open `open http://127.0.0.1:8080/view`
 
 
 
