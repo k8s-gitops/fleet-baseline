@@ -1,0 +1,26 @@
+# apiVersion: networking.k8s.io/v1
+# kind: NetworkPolicy
+# metadata:
+#   name: ingress-to-ports-kube-system
+#   namespace: kube-system
+# spec:
+#   podSelector: {}
+#   ingress:
+#   - ports:
+#       # kube-dns
+#       - port: 53
+#         protocol: TCP
+#       - port: 53
+#         protocol: UDP
+#       # external-dns
+#       - port: 7979
+#         protocol: TCP
+#       # heapster
+#       - port: 8082
+#         protocol: TCP
+#       # cluster-autoscaler
+#       - port: 8085
+#         protocol: TCP
+#       # metrics-server and cluster-agent-metrics-api
+#       - port: 443
+#         protocol: TCP
