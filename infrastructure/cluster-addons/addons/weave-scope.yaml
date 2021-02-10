@@ -8,10 +8,10 @@ spec:
   releaseName: weave-scope
   chart:
     spec:
-      chart: stable
+      chart: weave-scope
       sourceRef:
         kind: HelmRepository
-        name: weave-scope
+        name: stable
         namespace: flux-system
   interval: 5m
   install:
