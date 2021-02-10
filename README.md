@@ -19,8 +19,18 @@ This is tied to a bigger `SecureByDefault PaaS` Project
 
 ## Cheatsheet
 
-|----|
-flux logs kubectl logs deploy/kustomize-controller -n flux-system
+* flux logs `kubectl logs deploy/kustomize-controller -n flux-system`
+* helm logs `kubectl logs deploy/helm-controller -n flux-system`
+* flux kustomizations `flux get kustomizations -A`
+* flux helmreleases `flux get helmreleases -A`
+* view the weavescope `kubectl -n kube-system port-forward $(kubectl -n kube-system get endpoints weave-scope-weave-scope -o jsonpath='{.subsets[0].addresses[0].targetRef.name}') 8080:4040`
+* helm list `helm list -A`
+* helm get  `helm get <nameofrelease> -n <namespace>`
+* kubei logs `kubectl -n kubei get pod -lapp=kubei`
+
+
+
+
 ## Compliance
 
 NIST
