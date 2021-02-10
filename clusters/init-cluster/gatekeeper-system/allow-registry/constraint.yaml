@@ -1,17 +1,18 @@
-apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sAllowedRepos
-metadata:
-  name: repo-is-private-ecr
-spec:
-  match:
-    kinds:
-      - apiGroups: [""]
-        kinds: ["Pod"]
-    namespaces:
-      - "default"
-  parameters:
-    repos:
-      # - "gcr.io/cloud-marketplace/google/nginx"
-      # - "public.ecr.aws/nginx/nginx"
-      - "0123456.dkr.ecr.eu-west-1.amazonaws.com/"
-      # - "docker.io"
+# apiVersion: constraints.gatekeeper.sh/v1beta1
+# kind: K8sAllowedRepos
+# metadata:
+#   name: repo-is-private-ecr
+# spec:
+#   match:
+#     kinds:
+#       - apiGroups: [""]
+#         kinds: ["Pod"]
+#     namespaces:
+#       - "default"
+#   parameters:
+#     repos:
+#       # - "gcr.io/cloud-marketplace/google/nginx"
+#       # - "public.ecr.aws/nginx/nginx"
+#       - "0123456.dkr.ecr.eu-west-1.amazonaws.com/"
+#       # - "docker.io"
+#       -
