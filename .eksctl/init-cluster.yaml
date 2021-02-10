@@ -9,9 +9,9 @@ metadata:
 nodeGroups:
   - name: dev-cluster-1001-stateless
     instanceType: m5.large
-    desiredCapacity: 3
-    maxSize: 5
-    minSize: 3
+    desiredCapacity: 0
+    maxSize: 0
+    minSize: 0
     privateNetworking: true
     ssh:
       allow: true # will use ~/.ssh/id_rsa.pub as the default ssh key
@@ -21,9 +21,9 @@ nodeGroups:
         autoScaler: true
   - name: dev-cluster-1005-appmesh
     instanceType: m5.large
-    desiredCapacity: 0
-    minSize: 0
-    maxSize: 0
+    desiredCapacity: 3
+    minSize: 3
+    maxSize: 5
     iam:
       withAddonPolicies:
         albIngress: true
