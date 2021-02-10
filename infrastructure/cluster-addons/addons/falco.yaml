@@ -1,0 +1,25 @@
+
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: falco
+  namespace: kube-system
+spec:
+  releaseName: falco
+  chart:
+    spec:
+      chart: falco
+      sourceRef:
+        kind: HelmRepository
+        name: falcosecurity
+        namespace: flux-system
+  interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    fakeEventGenerator:
+      enabled: true
