@@ -1,5 +1,8 @@
 # fleet-build2
 
+[Flux App Mesh](https://www.youtube.com/watch?v=cB7iXeNLteE&t=2s&ab_channel=Weaveworks%2CInc.)
+[Source for App mesh](https://github.com/k8s-gitops/k8s-appmesh)
+
 What is this?
 
 This is a template for fully compliant Kubernetes Fleet.
