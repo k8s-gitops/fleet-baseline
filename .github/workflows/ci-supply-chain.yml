@@ -17,7 +17,7 @@ jobs:
       
       - name: kubeval
         env:
-          KUBE_VER: "1.16.0"
+          KUBE_VER: "1.18.0"
         uses: stefanprodan/kube-tools@v1
         with:
           kubectl: 1.18.2
@@ -38,3 +38,20 @@ jobs:
         with:
           directory: .
           #config: .kube-linter/config.yaml
+
+  scan:
+    needs: scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: kubeval
+        env:
+          KUBE_VER: "1.18.0"
+        uses: stefanprodan/kube-tools@v1
+        with:
+          kubectl: 1.18.2
+          kubeval: 0.11.5
+          command: |
+            kubeval --strict --ignore-missing-schemas --kubernetes-version ${KUBE_VER} -d clusters,infrastructure --ignored-filename-patterns kustomization.yaml
