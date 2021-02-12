@@ -1,7 +1,8 @@
 # fleet-build2
 
-[Flux App Mesh](https://www.youtube.com/watch?v=cB7iXeNLteE&t=2s&ab_channel=Weaveworks%2CInc.)
-[Source for App mesh](https://github.com/k8s-gitops/k8s-appmesh)
+* [Flux App Mesh](https://www.youtube.com/watch?v=cB7iXeNLteE&t=2s&ab_channel=Weaveworks%2CInc.)
+* [App Mesh Deep Dive](https://www.youtube.com/watch?v=FUpRWlTXDP8&ab_channel=AWSOnlineTechTalks)
+* [Source for App mesh](https://github.com/k8s-gitops/k8s-appmesh)
 
 What is this?
 
@@ -22,6 +23,9 @@ This is tied to a bigger `SecureByDefault PaaS` Project
 
 ## Cheatsheet
 
+* flux reconcile now `flux reconcile kustomization flux-system`
+* flux pause reconcilation `flux suspend kustomization flux-system`
+* flux resume reoncilation `flux resume kustomization flux-system`
 * flux logs `kubectl logs deploy/kustomize-controller -n flux-system`
 * helm logs `kubectl logs deploy/helm-controller -n flux-system`
 * flux kustomizations `flux get kustomizations -A`
