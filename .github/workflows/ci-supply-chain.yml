@@ -54,4 +54,4 @@ jobs:
           kubectl: 1.18.2
           kubeval: 0.11.5
           command: |
-            kubeval --strict --ignore-missing-schemas --kubernetes-version ${KUBE_VER} -d clusters,infrastructure --ignored-filename-patterns kustomization.yaml
+            kubeaudit all
