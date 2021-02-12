@@ -9,11 +9,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Scan yamls
-        id: kube-lint-scan
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: kube-lint
+        id: kube-lint
         uses: stackrox/kube-linter-action@v1
         with:
           directory: .
