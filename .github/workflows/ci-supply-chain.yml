@@ -37,7 +37,7 @@ jobs:
         uses: stackrox/kube-linter-action@v1
         with:
           directory: .
-          #config: .kube-linter/config.yaml
+          config: .kube-linter/remove-default-checks.yaml
 
   analyze:
     needs: lint
