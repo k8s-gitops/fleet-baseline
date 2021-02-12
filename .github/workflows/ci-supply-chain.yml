@@ -39,19 +39,18 @@ jobs:
           directory: .
           #config: .kube-linter/config.yaml
 
-  scan:
+  analyze:
     needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         
-      - name: kubeval
-        env:
-          KUBE_VER: "1.18.0"
-        uses: stefanprodan/kube-tools@v1
+      - name: Run Checkov action
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
         with:
-          kubectl: 1.18.2
-          kubeval: 0.11.5
-          command: |
-            kubeaudit all
+          directory: ./
+          quiet: true 
+          framework: kubernetes
+          output_format: github_failed_only
