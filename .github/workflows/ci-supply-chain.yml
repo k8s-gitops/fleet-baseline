@@ -40,7 +40,7 @@ jobs:
           #config: .kube-linter/config.yaml
 
   scan:
-    needs: scan
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
