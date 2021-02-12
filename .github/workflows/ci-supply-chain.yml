@@ -26,6 +26,7 @@ jobs:
             kubeval --strict --ignore-missing-schemas --kubernetes-version ${KUBE_VER} -d clusters,infrastructure
 
   lint:
+    needs: validate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
