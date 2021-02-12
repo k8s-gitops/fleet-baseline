@@ -2,7 +2,9 @@
 
 * [Flux App Mesh](https://www.youtube.com/watch?v=cB7iXeNLteE&t=2s&ab_channel=Weaveworks%2CInc.)
 * [App Mesh Deep Dive](https://www.youtube.com/watch?v=FUpRWlTXDP8&ab_channel=AWSOnlineTechTalks)
-* [Source for App mesh](https://github.com/k8s-gitops/k8s-appmesh)
+* [Source for App mesh Gitops](https://github.com/k8s-gitops/k8s-appmesh)
+* [App mesh Blue Green Examples](https://github.com/aws/aws-app-mesh-examples)
+
 
 * [Attack this! A guide](https://medium.com/faun/attacking-kubernetes-clusters-using-the-kubelet-api-abafc36126ca)
 
