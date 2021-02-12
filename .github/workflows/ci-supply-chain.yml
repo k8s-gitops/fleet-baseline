@@ -23,7 +23,7 @@ jobs:
           kubectl: 1.18.2
           kubeval: 0.15.0
           command: |
-            kubeval --strict --ignore-missing-schemas --kubernetes-version ${KUBE_VER} -d clusters,infrastructure
+            kubeval --strict --ignore-missing-schemas --kubernetes-version ${KUBE_VER} -d clusters,infrastructure --ignored-filename-patterns kustomization.yaml
 
   lint:
     needs: validate
