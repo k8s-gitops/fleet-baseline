@@ -1,4 +1,4 @@
-name: lint-scan
+name: lint-scan-analyze
 
 on:
   push:
