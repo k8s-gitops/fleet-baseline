@@ -40,7 +40,7 @@ jobs:
           config: .kube-linter/remove-default-checks.yaml
 
   scan:
-    needs: validate
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
