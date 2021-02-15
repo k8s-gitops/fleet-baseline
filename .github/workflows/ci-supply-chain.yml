@@ -39,18 +39,18 @@ jobs:
           directory: .
           config: .kube-linter/remove-default-checks.yaml
 
-  analyze:
+  scan:
     needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         
-      - name: Run Checkov action
-        id: checkov
-        uses: bridgecrewio/checkov-action@master
-        with:
-          directory: ./
-          quiet: true 
-          framework: kubernetes
-          output_format: github_failed_only
+      - name: download-trivy-in-cache
+        run: docker pull aquasec/trivy:0.15.0 
+      
+      - name: get-all-image
+        run: find . -name *.yaml -type f -exec cat {} + | grep -E "image\:" | awk '{print $2}' > /tmp/.cache/images
+      
+      - name: run-scanner
+        run: for image in $(cat /tmp/.cache/images); do echo "$image" && docker --rm -v /var/run/docker.sock:/var/run/docker.sock -v $PWD:/tmp/.cache/ $image ; done
