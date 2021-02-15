@@ -10,7 +10,7 @@ It aims to comply to NIST SP, CIS Docker Image, CIS Kubernetes, CIS Operating Sy
 
 This repo is secured by a supply chain mgmt process.
 
-![Supply Chain Image]()
+![Supply Chain Image](./supply-chain.png)
 
 **Validate**
 Validate Kubernetes Manifests using [kubeval]
