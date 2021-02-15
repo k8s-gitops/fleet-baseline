@@ -1,12 +1,4 @@
-# fleet-build2
-
-* [Flux App Mesh](https://www.youtube.com/watch?v=cB7iXeNLteE&t=2s&ab_channel=Weaveworks%2CInc.)
-* [App Mesh Deep Dive](https://www.youtube.com/watch?v=FUpRWlTXDP8&ab_channel=AWSOnlineTechTalks)
-* [Source for App mesh Gitops](https://github.com/k8s-gitops/k8s-appmesh)
-* [App mesh Blue Green Examples](https://github.com/aws/aws-app-mesh-examples)
-
-
-* [Attack this! A guide](https://medium.com/faun/attacking-kubernetes-clusters-using-the-kubelet-api-abafc36126ca)
+# fleet-baseline
 
 What is this?
 
@@ -14,7 +6,20 @@ This is a template for fully compliant Kubernetes Fleet.
 
 It aims to comply to NIST SP, CIS Docker Image, CIS Kubernetes, CIS Operating System.
 
-This is tied to a bigger `SecureByDefault PaaS` Project
+## Supply Chain
+
+This repo is secured by a supply chain mgmt process.
+
+![Supply Chain Image]()
+
+**Validate**
+Validate Kubernetes Manifests using [kubeval]
+
+**Lint**
+Lint Kubernetes Manifest for best practices using [kube-linter]
+
+**Scan**
+Get all images defined and scans them using [trivy]
 
 ## Prerequisites
 
@@ -51,13 +56,15 @@ NIST
 
 ## Get Started
 
+Fork this repo
+
 Export your GitHub personal access token as an environment variable:
 
 
 ```
 export GITHUB_TOKEN=<your-token>
-export GITHUB_USER=k8s-gitops
-export GITHUB_REPO=fleet-build2
+export GITHUB_USER=k8s-gitops # change this to your username or orgname
+export GITHUB_REPO=fleet-baseline
 ```
 
 ### Setup the Build Cluster
@@ -77,4 +84,23 @@ weave-scope-weave-scope -o jsonpath='{.subsets[0].addresses[0].targetRef.name}')
 ```
 
 ## Update Gatekeeper System
-Go to 
+
+1. Create Gatekeeper templates
+2. Apply them in the init-cluster or any other cluster by creating the constraint yaml.
+
+Here's an example the template is on the [opa-templates](https://github.com/k8s-gitops/fleet-baseline/blob/main/infrastructure/opa-templates/constraint-template.yaml) dir and the contraint implementation is on [gatekeeper-system](https://github.com/k8s-gitops/fleet-baseline/blob/main/clusters/init-cluster/gatekeeper-system/allow-registry/constraint.yaml) dir in init-cluster.
+
+## References
+* [Flux App Mesh](https://www.youtube.com/watch?v=cB7iXeNLteE&t=2s&ab_channel=Weaveworks%2CInc.)
+* [App Mesh Deep Dive](https://www.youtube.com/watch?v=FUpRWlTXDP8&ab_channel=AWSOnlineTechTalks)
+* [Source for App mesh Gitops](https://github.com/k8s-gitops/k8s-appmesh)
+* [App mesh Blue Green Examples](https://github.com/aws/aws-app-mesh-examples)
+
+
+
+* [Attack this! A guide](https://medium.com/faun/attacking-kubernetes-clusters-using-the-kubelet-api-abafc36126ca)
+
+
+[kubeval]: https://www.kubeval.com/#full-usage-instructions
+[kube-linter]: https://docs.kubelinter.io/#/
+[trivy]: https://github.com/aquasecurity/trivy
