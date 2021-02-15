@@ -53,4 +53,4 @@ jobs:
         run: mkdir -p /tmp/.cache && find . -name *.yaml -type f -exec cat {} + | grep -E "image\:" | awk '{print $2}' > /tmp/.cache/images
       
       - name: run-scanner
-        run: for image in $(cat /tmp/.cache/images); do echo "$image" && docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $PWD:/tmp/.cache/ $image ; done
+        run: for image in $(cat /tmp/.cache/images); do echo "$image" && docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $PWD:/tmp/.cache/ aquasec/trivy:0.15.0 $image ; done
