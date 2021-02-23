@@ -99,7 +99,7 @@ Here's an example the template is on the [opa-templates](https://github.com/k8s-
 
 
 * [Attack this! A guide](https://medium.com/faun/attacking-kubernetes-clusters-using-the-kubelet-api-abafc36126ca)
-
+* [accurics threat modeling](https://www.youtube.com/watch?v=fup0hCk46XE&t=5s&ab_channel=Accurics)
 
 [kubeval]: https://www.kubeval.com/#full-usage-instructions
 [kube-linter]: https://docs.kubelinter.io/#/
