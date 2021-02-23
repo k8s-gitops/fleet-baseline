@@ -97,9 +97,10 @@ Here's an example the template is on the [opa-templates](https://github.com/k8s-
 * [App mesh Blue Green Examples](https://github.com/aws/aws-app-mesh-examples)
 
 
-
+### Security Refs
 * [Attack this! A guide](https://medium.com/faun/attacking-kubernetes-clusters-using-the-kubelet-api-abafc36126ca)
 * [accurics threat modeling](https://www.youtube.com/watch?v=fup0hCk46XE&t=5s&ab_channel=Accurics)
+* [security academy](https://portswigger.net/web-security/all-materials)
 
 [kubeval]: https://www.kubeval.com/#full-usage-instructions
 [kube-linter]: https://docs.kubelinter.io/#/
