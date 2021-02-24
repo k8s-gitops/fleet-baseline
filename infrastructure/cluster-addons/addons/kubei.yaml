@@ -1,11 +1,6 @@
 # https://raw.githubusercontent.com/Portshift/kubei/master/deploy/kubei.yaml
 ---
 apiVersion: v1
-kind: Namespace
-metadata:
-  name: kubei
----
-apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: kubei
