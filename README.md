@@ -78,7 +78,8 @@ setup elastic search credentials
 
 ```
 direnv allow
-cat clusters/init-cluster/monitoring/event-exporter/01-configmap.yaml.template | envsubst | kubectl apply -f
+kubectl create ns monitoring
+cat clusters/init-cluster/monitoring/event-exporter/01-configmap.yaml.template | envsubst | kubectl apply -f -
 ```
 
 for more details on elasticsearch setup see this [blog](https://thechief.io/c/kenichishibata/exporting-kubernetes-events-aws-elastic-search/)
