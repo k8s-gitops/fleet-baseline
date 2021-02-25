@@ -105,7 +105,7 @@ weave-scope-weave-scope -o jsonpath='{.subsets[0].addresses[0].targetRef.name}')
 1. Create Gatekeeper templates
 2. Apply them in the init-cluster or any other cluster by creating the constraint yaml.
 
-Here's an example the template is on the [opa-templates](https://github.com/k8s-gitops/fleet-baseline/blob/main/infrastructure/opa-templates/constraint-template.yaml) dir and the contraint implementation is on [gatekeeper-system](https://github.com/k8s-gitops/fleet-baseline/blob/main/clusters/init-cluster/gatekeeper-system/allow-registry/constraint.yaml) dir in init-cluster.
+Here's an example the template is on the [opa-templates](https://github.com/k8s-gitops/fleet-baseline/blob/main/infrastructure/opa-templates/constraint-template.yaml) dir and the contraint implementation is on [gatekeeper-system](https://github.com/k8s-gitops/fleet-baseline/blob/main/infrastructure/policies/gatekeeper-system/allow-registry/constraint.yaml) dir in init-cluster.
 
 ## Secrets management
 
