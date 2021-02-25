@@ -12,15 +12,6 @@ spec:
   path: ./infrastructure/cluster-addons
   prune: true
   validation: client
-  healthChecks:
-    - apiVersion: v1
-      kind: Service
-      name: appmesh-controller-webhook-service
-      namespace: appmesh-system
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: appmesh-controller
-      namespace: appmesh-system
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
