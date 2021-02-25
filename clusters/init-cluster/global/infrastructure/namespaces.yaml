@@ -13,11 +13,3 @@ kind: Namespace
 metadata:
   name: security-system
 ---
-# apiVersion: v1
-# kind: Namespace
-# metadata:
-#   labels:
-#     admission.gatekeeper.sh/ignore: no-self-managing
-#     control-plane: controller-manager
-#     gatekeeper.sh/system: "yes"
-#   name: gatekeeper-system
