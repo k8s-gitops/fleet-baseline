@@ -106,6 +106,32 @@ weave-scope-weave-scope -o jsonpath='{.subsets[0].addresses[0].targetRef.name}')
 
 Here's an example the template is on the [opa-templates](https://github.com/k8s-gitops/fleet-baseline/blob/main/infrastructure/opa-templates/constraint-template.yaml) dir and the contraint implementation is on [gatekeeper-system](https://github.com/k8s-gitops/fleet-baseline/blob/main/clusters/init-cluster/gatekeeper-system/allow-registry/constraint.yaml) dir in init-cluster.
 
+## Secrets management
+
+You need to setup KIAM or IRSA or manually attach policy the noderole with following policy
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:GetResourcePolicy",
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:DescribeSecret",
+        "secretsmanager:ListSecretVersionIds"
+      ],
+      "Resource": [
+        "arn:aws:secretsmanager:us-west-2:111122223333:secret:aes128-1a2b3c",
+        "arn:aws:secretsmanager:us-west-2:111122223333:secret:aes192-4D5e6F",
+        "arn:aws:secretsmanager:us-west-2:111122223333:secret:aes256-7g8H9i"
+      ]
+    }
+  ]
+}
+```
+
 ## References
 * [Flux App Mesh](https://www.youtube.com/watch?v=cB7iXeNLteE&t=2s&ab_channel=Weaveworks%2CInc.)
 * [App Mesh Deep Dive](https://www.youtube.com/watch?v=FUpRWlTXDP8&ab_channel=AWSOnlineTechTalks)
