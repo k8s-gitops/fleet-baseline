@@ -23,7 +23,9 @@ Get all images defined and scans them using [trivy]
 
 ## Prerequisites
 
-* Running Kubernetes Clusters
+* Running Kubernetes Clusters (ver at least 1.18)
+* [direnv](https://github.com/direnv/direnv)
+* [envsubst](https://github.com/a8m/envsubst)
 ## Structure
 
 * **clusters** - clusters running
@@ -39,7 +41,7 @@ Get all images defined and scans them using [trivy]
 * helm logs `kubectl logs deploy/helm-controller -n flux-system`
 * flux kustomizations `flux get kustomizations -A`
 * flux helmreleases `flux get helmreleases -A`
-* view the weavescope `kubectl -n kube-system port-forward $(kubectl -n kube-system get endpoints weave-scope-weave-scope -o jsonpath='{.subsets[0].addresses[0].targetRef.name}') 8080:4040`
+* view the weavescope `kubectl -n monitoring port-forward $(kubectl -n monitoring get endpoints weave-scope-weave-scope -o jsonpath='{.subsets[0].addresses[0].targetRef.name}') 8080:4040`
 * helm list `helm list -A`
 * helm get  `helm get <nameofrelease> -n <namespace>`
 * kubei get `kubectl -n kubei get pod -lapp=kubei`
@@ -60,12 +62,26 @@ Fork this repo
 
 Export your GitHub personal access token as an environment variable:
 
+or setup an `.envrc`
 
 ```
 export GITHUB_TOKEN=<your-token>
 export GITHUB_USER=k8s-gitops # change this to your username or orgname
 export GITHUB_REPO=fleet-baseline
+
+export ELASTICSEARCH_PASSWORD=<password>
+export ELASTICSEARCH_USER=<user>
+export ELASTICSEARCH_HOST=<host>
 ```
+
+setup elastic search credentials
+
+```
+direnv allow
+cat clusters/init-cluster/monitoring/event-exporter/01-configmap.yaml.template | envsubst | kubectl apply -f
+```
+
+for more details on elasticsearch setup see this [blog](https://thechief.io/c/kenichishibata/exporting-kubernetes-events-aws-elastic-search/)
 
 ### Setup the Build Cluster
 Run the bootstrap for a repository on your personal GitHub account:
