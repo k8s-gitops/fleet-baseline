@@ -173,7 +173,7 @@ make sure you comment out the `kubectl apply -f` part of the `deploy.sh script` 
 
 Once you get the manifest delete the `Mesh` resource since it will conflict with the existing mesh here. For some reason only a single `Mesh` is allowed currently.
 
-
+copy the `manifest.yaml` and move it to one of the tenants dir.
 
 check the app mesh resources in
 
