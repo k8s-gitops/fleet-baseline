@@ -5,6 +5,7 @@ metadata:
   name: howto-k8s-http2
   labels:
     mesh: appmesh
+    gateway: appmesh-gateway_appmesh-gateway
     appmesh.k8s.aws/sidecarInjectorWebhook: enabled
 ---
 apiVersion: appmesh.k8s.aws/v1beta2
