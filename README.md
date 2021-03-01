@@ -73,6 +73,12 @@ export GITHUB_REPO=fleet-baseline
 export ELASTICSEARCH_PASSWORD=<password>
 export ELASTICSEARCH_USER=<user>
 export ELASTICSEARCH_HOST=<host>
+
+export AWS_ACCOUNT_ID=<aws account id>
+export AWS_DEFAULT_REGION=eu-west-1
+export AWS_PROFILE=<aws account>
+export VPC_ID=<eks vpc id>
+
 ```
 
 setup elastic search credentials
