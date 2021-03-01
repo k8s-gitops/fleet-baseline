@@ -83,6 +83,11 @@ kubectl create ns monitoring
 cat clusters/init-cluster/monitoring/event-exporter/01-configmap.yaml.template | envsubst | kubectl apply -f -
 ```
 
+cleanup my tenants. you need to create your own tenants later.
+```
+rm -rf tenants/
+```
+
 for more details on elasticsearch setup see this [blog](https://thechief.io/c/kenichishibata/exporting-kubernetes-events-aws-elastic-search/)
 
 ### Setup the Init Cluster
@@ -160,9 +165,11 @@ export VPC_ID=<>
 
 make sure you comment out the `kubectl apply -f` part of the `deploy.sh script` and change it to `echo` to tell your where it stored your manifests.
 
-Once you get the manifest delete the `Mesh` resource since it will conflict with the existing mesh here. For some reason only a single `Mesh` is allowed currently. 
+Once you get the manifest delete the `Mesh` resource since it will conflict with the existing mesh here. For some reason only a single `Mesh` is allowed currently.
 
-check the app mesh resources 
+
+
+check the app mesh resources in
 
 https://github.com/aws/aws-app-mesh-examples/blob/main/walkthroughs/eks/base.md
 
