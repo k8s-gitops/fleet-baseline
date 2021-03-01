@@ -4,7 +4,7 @@ kind: ClusterConfig
 metadata:
   name: dev-cluster-2
   region: eu-west-1
-  version: "1.18"
+  version: "1.19"
 
 nodeGroups:
   - name: dev-cluster-1001-stateless
