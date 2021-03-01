@@ -2,7 +2,7 @@
 
 What is this?
 
-This is a template for fully compliant Kubernetes Fleet.
+This is a template for fully compliant Kubernetes Fleet on AWS.
 
 It aims to comply to NIST SP, CIS Docker Image, CIS Kubernetes, CIS Operating System.
 
@@ -48,8 +48,9 @@ Get all images defined and scans them using [trivy]
 * kubei pf `kubectl -n kubei port-forward $(kubectl -n kubei get pods -lapp=kubei -o jsonpath='{.items[0].metadata.name}') 8080`
 * kubei logs `kubectl -n kubei logs $(kubectl -n kubei get pods -lapp=kubei -o jsonpath='{.items[0].metadata.name}')`
 * kubei open `open http://127.0.0.1:8080/view`
-
-
+* grafana pf `kubectl -n flux-system port-forward svc/grafana 3000:3000`
+* grafana control plane dash `open http://127.0.0.1:3000/d/gitops-toolkit-control-plane`
+* grafana reconciliation dash `open http://127.0.0.1:3000/d/gitops-toolkit-cluster`
 
 ## Compliance
 
@@ -84,7 +85,7 @@ cat clusters/init-cluster/monitoring/event-exporter/01-configmap.yaml.template |
 
 for more details on elasticsearch setup see this [blog](https://thechief.io/c/kenichishibata/exporting-kubernetes-events-aws-elastic-search/)
 
-### Setup the Build Cluster
+### Setup the Init Cluster
 Run the bootstrap for a repository on your personal GitHub account:
 
 ```
@@ -132,6 +133,39 @@ You need to setup KIAM or IRSA or manually attach policy the noderole with follo
   ]
 }
 ```
+
+## Monitoring Stack
+
+* https://toolkit.fluxcd.io/guides/monitoring/
+
+
+## App mesh 
+
+Once you bootstrap the cluster will have aws appmesh by default. The next step is to deploy the test application available at. 
+
+https://github.com/aws/aws-app-mesh-examples/tree/master/walkthroughs/howto-k8s-http2
+
+make sure to export these environment variables before doing a `./deploy.sh`
+
+```
+git clone git@github.com:aws/aws-app-mesh-examples
+cd walkthrough/howto-k8s-http2
+
+export AWS_ACCOUNT_ID=<>
+export AWS_DEFAULT_REGION=<>
+export AWS_PROFILE=<>
+export VPC_ID=<>
+
+```
+
+make sure you comment out the `kubectl apply -f` part of the `deploy.sh script` and change it to `echo` to tell your where it stored your manifests.
+
+Once you get the manifest delete the `Mesh` resource since it will conflict with the existing mesh here. For some reason only a single `Mesh` is allowed currently. 
+
+check the app mesh resources 
+
+https://github.com/aws/aws-app-mesh-examples/blob/main/walkthroughs/eks/base.md
+
 
 ## References
 * [Flux App Mesh](https://www.youtube.com/watch?v=cB7iXeNLteE&t=2s&ab_channel=Weaveworks%2CInc.)
