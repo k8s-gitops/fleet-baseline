@@ -180,10 +180,12 @@ check the app mesh resources in
 https://github.com/aws/aws-app-mesh-examples/blob/main/walkthroughs/eks/base.md
 
 
+TODO:: add an ingress gateway for appmesh https://github.com/aws/aws-app-mesh-examples/tree/master/walkthroughs/howto-k8s-ingress-gateway
+
 ## References
 * [Flux App Mesh](https://www.youtube.com/watch?v=cB7iXeNLteE&t=2s&ab_channel=Weaveworks%2CInc.)
 * [App Mesh Deep Dive](https://www.youtube.com/watch?v=FUpRWlTXDP8&ab_channel=AWSOnlineTechTalks)
-* [Source for App mesh Gitops](https://github.com/k8s-gitops/k8s-appmesh)
+* [Source for App mesh Gitops](https://github.com/k8s-gitops/gitops-appmesh)
 * [App mesh Blue Green Examples](https://github.com/aws/aws-app-mesh-examples)
 
 
