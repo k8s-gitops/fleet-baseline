@@ -2,7 +2,7 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: dev-cluster-2
+  name: dev-cluster-1000
   region: eu-west-1
   version: "1.18"
 
@@ -47,4 +47,3 @@ cloudWatch:
     enableTypes: ["audit", "authenticator", "controllerManager", "scheduler", "api"]
     # all supported types: "api", "audit", "authenticator", "controllerManager", "scheduler"
     # supported special values: "*" and "all"
-
