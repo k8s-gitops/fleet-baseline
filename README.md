@@ -77,8 +77,10 @@ export ELASTICSEARCH_HOST=<host>
 export AWS_ACCOUNT_ID=<aws account id>
 export AWS_DEFAULT_REGION=eu-west-1
 export AWS_PROFILE=<aws account>
+
 export VPC_ID=<eks vpc id>
 
+export CLUSTER_NAME=<eks>
 ```
 
 create eks cluster
@@ -88,6 +90,19 @@ brew install weaveworks/tap/eksctl
 brew upgrade eksctl && brew link --overwrite eksctl
 
 eksctl create -f ./eksctl/init-cluster.yaml
+
+eksctl utils associate-iam-oidc-provider \
+    --region=$AWS_REGION \
+    --cluster $CLUSTER_NAME \
+    --approve
+
+eksctl create iamserviceaccount \
+    --cluster $CLUSTER_NAME \
+    --namespace appmesh-system \
+    --name appmesh-controller \
+    --attach-policy-arn  arn:aws:iam::aws:policy/AWSCloudMapFullAccess,arn:aws:iam::aws:policy/AWSAppMeshFullAccess \
+    --override-existing-serviceaccounts \
+    --approve
 ```
 
 setup elastic search credentials
@@ -145,9 +160,7 @@ You need to setup KIAM or IRSA or manually attach policy the noderole with follo
         "secretsmanager:ListSecretVersionIds"
       ],
       "Resource": [
-        "arn:aws:secretsmanager:us-west-2:111122223333:secret:aes128-1a2b3c",
-        "arn:aws:secretsmanager:us-west-2:111122223333:secret:aes192-4D5e6F",
-        "arn:aws:secretsmanager:us-west-2:111122223333:secret:aes256-7g8H9i"
+        "arn:aws:secretsmanager:<region>:<accountid>:somesecret-*"
       ]
     }
   ]
@@ -197,6 +210,13 @@ Installation of AppMesh Failed:: https://github.com/aws/aws-app-mesh-controller-
 
 https://linkerd.io/2/getting-started/
 
+
+## Cleanup 
+
+```
+eksctl delete <cluster name>
+```
+
 ## References
 * [Flux App Mesh](https://www.youtube.com/watch?v=cB7iXeNLteE&t=2s&ab_channel=Weaveworks%2CInc.)
 * [App Mesh Deep Dive](https://www.youtube.com/watch?v=FUpRWlTXDP8&ab_channel=AWSOnlineTechTalks)
@@ -212,3 +232,39 @@ https://linkerd.io/2/getting-started/
 [kubeval]: https://www.kubeval.com/#full-usage-instructions
 [kube-linter]: https://docs.kubelinter.io/#/
 [trivy]: https://github.com/aquasecurity/trivy
+
+## Troubleshooting
+
+Q: Im getting on app mesh
+
+```
+  Error from server (failed to find matching mesh for namespace: howto-k8s-http2, expecting 1 but found 0): error when creating "58628260-0469-4e8d-b59e-3210e834bb6b.yaml": admission webhook "mvirtualservice.appmesh.k8s.aws" denied the request: failed to find matching mesh for namespace: howto-k8s-http2, expecting 1 but found 0
+```
+
+A: Make sure you add OIDC and Service Acccount Priviege needed. Step 7 and 8 in https://docs.aws.amazon.com/app-mesh/latest/userguide/getting-started-kubernetes.html
+
+or
+
+```
+eksctl utils associate-iam-oidc-provider \
+    --region=$AWS_REGION \
+    --cluster $CLUSTER_NAME \
+    --approve
+
+eksctl create iamserviceaccount \
+    --cluster $CLUSTER_NAME \
+    --namespace appmesh-system \
+    --name appmesh-controller \
+    --attach-policy-arn  arn:aws:iam::aws:policy/AWSCloudMapFullAccess,arn:aws:iam::aws:policy/AWSAppMeshFullAccess \
+    --override-existing-serviceaccounts \
+    --approve
+```
+
+
+Q: Im getting TLS bad cert error for app mesh controller
+
+A: It looks like this is normal. You have to wait for a while until envoy TLS resolves. To observe it follow the logs of appmesh controller. 
+
+```
+ kubectl logs -n appmesh-system deploy/appmesh-controller
+```
