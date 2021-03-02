@@ -81,6 +81,15 @@ export VPC_ID=<eks vpc id>
 
 ```
 
+create eks cluster
+```
+brew tap weaveworks/tap
+brew install weaveworks/tap/eksctl
+brew upgrade eksctl && brew link --overwrite eksctl
+
+eksctl create -f ./eksctl/init-cluster.yaml
+```
+
 setup elastic search credentials
 
 ```
@@ -181,6 +190,12 @@ https://github.com/aws/aws-app-mesh-examples/blob/main/walkthroughs/eks/base.md
 
 
 TODO:: add an ingress gateway for appmesh https://github.com/aws/aws-app-mesh-examples/tree/master/walkthroughs/howto-k8s-ingress-gateway
+
+Installation of AppMesh Failed:: https://github.com/aws/aws-app-mesh-controller-for-k8s/issues/447
+
+## Linkerd
+
+https://linkerd.io/2/getting-started/
 
 ## References
 * [Flux App Mesh](https://www.youtube.com/watch?v=cB7iXeNLteE&t=2s&ab_channel=Weaveworks%2CInc.)
