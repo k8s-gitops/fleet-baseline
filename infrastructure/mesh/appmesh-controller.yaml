@@ -4,7 +4,7 @@ metadata:
   name: appmesh-controller
   namespace: appmesh-system
 spec:
-  releaseName: appmesh-controller
+  releaseName: appmesh
   chart:
     spec:
       chart: appmesh-controller
@@ -19,3 +19,7 @@ spec:
   upgrade:
     remediation:
       retries: 3
+  values:
+    serviceAccount:
+      create: false
+      name: appmesh-controller # this is created on the IRSA when doing eksctl create -f

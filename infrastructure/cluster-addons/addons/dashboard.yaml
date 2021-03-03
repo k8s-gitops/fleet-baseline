@@ -1,0 +1,25 @@
+# weave-scope
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kubernetes-dashboard
+  namespace: monitoring
+spec:
+  releaseName: kubernetes-dashboard
+  chart:
+    spec:
+      chart: kubernetes-dashboard
+      sourceRef:
+        kind: HelmRepository
+        name: kubernetes-dashboard
+        namespace: flux-system
+  interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values: #{}
+    protocolHttp: true #this disables the token thing which is a bit annoying
+    enableInsecureLogin: true #force to use token lol
