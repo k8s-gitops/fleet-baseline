@@ -89,7 +89,7 @@ brew tap weaveworks/tap
 brew install weaveworks/tap/eksctl
 brew upgrade eksctl && brew link --overwrite eksctl
 
-eksctl create -f ./eksctl/init-cluster.yaml
+eksctl create cluster -f ./.eksctl/init-cluster.yaml
 
 eksctl utils associate-iam-oidc-provider \
     --region=$AWS_REGION \
