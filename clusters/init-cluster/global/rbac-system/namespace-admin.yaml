@@ -1,0 +1,19 @@
+kind: ServiceAccount
+apiVersion: v1
+metadata:
+  name: namespace-admin
+  namespace: default # change this to the actual namespace
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: namespace-admin-rolebinding
+  namespace: rbac-system # change this to the actual namespace
+subjects:
+- kind: ServiceAccount
+  name: namespace-admin
+  namespace: default # change this to the actual namespace
+roleRef:
+  kind: ClusterRole
+  name: admin
+  apiGroup: rbac.authorization.k8s.io
