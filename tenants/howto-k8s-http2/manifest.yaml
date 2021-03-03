@@ -25,9 +25,8 @@ spec:
         virtualServiceRef:
           name: color
   serviceDiscovery:
-    awsCloudMap:
-      namespaceName: howto-k8s-http2.svc.cluster.local
-      serviceName: client
+    dns:
+      hostname: howto-k8s-http2.svc.cluster.local
 ---
 apiVersion: appmesh.k8s.aws/v1beta2
 kind: VirtualNode
@@ -52,9 +51,8 @@ spec:
         timeoutMillis: 2000
         intervalMillis: 5000
   serviceDiscovery:
-    awsCloudMap:
-      namespaceName: howto-k8s-http2.svc.cluster.local
-      serviceName: color-red
+    dns:
+      hostname: howto-k8s-http2.svc.cluster.local
 ---
 apiVersion: appmesh.k8s.aws/v1beta2
 kind: VirtualNode
@@ -79,9 +77,8 @@ spec:
         timeoutMillis: 2000
         intervalMillis: 5000
   serviceDiscovery:
-    awsCloudMap:
-      namespaceName: howto-k8s-http2.svc.cluster.local
-      serviceName: color-blue
+    dns:
+      hostname: howto-k8s-http2.svc.cluster.local
 ---
 apiVersion: appmesh.k8s.aws/v1beta2
 kind: VirtualNode
@@ -106,9 +103,8 @@ spec:
         timeoutMillis: 2000
         intervalMillis: 5000
   serviceDiscovery:
-    awsCloudMap:
-      namespaceName: howto-k8s-http2.svc.cluster.local
-      serviceName: color-green
+    dns:
+      hostname: howto-k8s-http2.svc.cluster.local
 ---
 apiVersion: appmesh.k8s.aws/v1beta2
 kind: VirtualService
