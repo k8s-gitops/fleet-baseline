@@ -222,7 +222,7 @@ eksctl delete <cluster name>
 * [App Mesh Deep Dive](https://www.youtube.com/watch?v=FUpRWlTXDP8&ab_channel=AWSOnlineTechTalks)
 * [Source for App mesh Gitops](https://github.com/k8s-gitops/gitops-appmesh)
 * [App mesh Blue Green Examples](https://github.com/aws/aws-app-mesh-examples)
-
+* [App mesh Blue Green Red Ingress Example](https://github.com/aws/aws-app-mesh-examples/blob/master/walkthroughs/howto-k8s-ingress-gateway/README.md)
 
 ### Security Refs
 * [Attack this! A guide](https://medium.com/faun/attacking-kubernetes-clusters-using-the-kubelet-api-abafc36126ca)
