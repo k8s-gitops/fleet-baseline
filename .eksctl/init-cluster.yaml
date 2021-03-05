@@ -2,12 +2,12 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: dev-cluster-1000
+  name: init-cluster-1000
   region: eu-west-1
   version: "1.18"
 
 nodeGroups:
-  - name: dev-cluster-1001-stateless
+  - name: ng-stateless-1001
     instanceType: m5.large
     desiredCapacity: 0
     maxSize: 0
@@ -19,7 +19,7 @@ nodeGroups:
       withAddonPolicies:
         imageBuilder: true
         autoScaler: true
-  - name: dev-cluster-1005-appmesh
+  - name: ng-appmesh-1005
     instanceType: m5.large
     desiredCapacity: 3
     minSize: 3
@@ -47,3 +47,36 @@ cloudWatch:
     enableTypes: ["audit", "authenticator", "controllerManager", "scheduler", "api"]
     # all supported types: "api", "audit", "authenticator", "controllerManager", "scheduler"
     # supported special values: "*" and "all"
+
+
+# read more about IRSA here https://eksctl.io/usage/iamserviceaccounts/
+iam:
+  withOIDC: true
+  serviceAccounts:
+  # you need this appmesh-controller for IRSA in appmesh-controller helm deployment
+  - metadata:
+    name: appmesh-controller
+    namespace: appmesh-system
+    labels: {aws-usage: "appmesh"}
+  attachPolicyARNs:
+  - "arn:aws:iam::aws:policy/AWSCloudMapFullAccess"
+  - "arn:aws:iam::aws:policy/AWSAppMeshFullAccess"
+  - metadata:
+      name: s3-reader
+      # if no namespace is set, "default" will be used;
+      # the namespace will be created if it doesn't exist already
+      # namespace: backend-apps
+      labels: {aws-usage: "application"}
+    attachPolicyARNs:
+    - "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+    tags:
+      Owner: "Kenichi Shibata"
+      Team: "The A Team"
+  - metadata:
+      name: cluster-autoscaler
+      namespace: kube-system
+      labels: {aws-usage: "cluster-ops"}
+    wellKnownPolicies:
+      autoScaler: true
+    roleName: eksctl-cluster-autoscaler-role
+    roleOnly: true
