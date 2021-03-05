@@ -1,0 +1,28 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kshibata-clusterrole
+  namespace: rbac-system
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kshibata-clusterrolebinding
+  namespace: rbac-system
+subjects:
+- kind: User
+  name: kshibata
+  namespace: rbac-system
+roleRef:
+  kind: ClusterRole
+  name: kshibata-clusterrole
+  apiGroup: rbac.authorization.k8s.io
