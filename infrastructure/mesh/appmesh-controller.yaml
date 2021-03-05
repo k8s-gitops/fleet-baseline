@@ -23,3 +23,5 @@ spec:
     serviceAccount:
       create: false
       name: appmesh-controller # this is created on the IRSA when doing eksctl create -f
+    tracing:
+      enabled: true
