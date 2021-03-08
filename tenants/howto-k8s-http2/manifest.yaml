@@ -4,8 +4,17 @@ kind: Namespace
 metadata:
   name: howto-k8s-http2
   labels:
-    mesh: appmesh
-    appmesh.k8s.aws/sidecarInjectorWebhook: enable
+    mesh: howto-k8s-http2
+    appmesh.k8s.aws/sidecarInjectorWebhook: enabled
+---
+apiVersion: appmesh.k8s.aws/v1beta2
+kind: Mesh
+metadata:
+  name: howto-k8s-http2
+spec:
+  namespaceSelector:
+    matchLabels:
+      mesh: howto-k8s-http2
 ---
 apiVersion: appmesh.k8s.aws/v1beta2
 kind: VirtualNode

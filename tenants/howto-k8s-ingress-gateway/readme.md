@@ -29,3 +29,10 @@ How did you make this?
 I followed the walkthrough here https://github.com/aws/aws-app-mesh-examples/blob/1c3a0a9dab/walkthroughs/howto-k8s-ingress-gateway/README.md
 
 I found this useful too https://github.com/aws/aws-app-mesh-examples/tree/1c3a0a9dabdc21376a0623aa645e382f4ebd959b/walkthroughs/eks
+
+Then add observability like cloudwatch and xray
+
+https://github.com/aws/aws-app-mesh-examples/blob/cdb5fe9efa/walkthroughs/eks/o11y-cloudwatch.md
+
+https://github.com/aws/aws-app-mesh-examples/blob/cdb5fe9efa/walkthroughs/eks/o11y-xray.md
+
