@@ -55,12 +55,12 @@ iam:
   serviceAccounts:
   # you need this appmesh-controller for IRSA in appmesh-controller helm deployment
   - metadata:
-    name: appmesh-controller
-    namespace: appmesh-system
-    labels: {aws-usage: "appmesh"}
-  attachPolicyARNs:
-  - "arn:aws:iam::aws:policy/AWSCloudMapFullAccess"
-  - "arn:aws:iam::aws:policy/AWSAppMeshFullAccess"
+      name: appmesh-controller
+      namespace: appmesh-system
+      labels: {aws-usage: "appmesh"}
+    attachPolicyARNs:
+    - "arn:aws:iam::aws:policy/AWSCloudMapFullAccess"
+    - "arn:aws:iam::aws:policy/AWSAppMeshFullAccess"
   - metadata:
       name: s3-reader
       # if no namespace is set, "default" will be used;
