@@ -4,14 +4,14 @@ kind: ClusterConfig
 metadata:
   name: init-cluster-1000
   region: eu-west-1
-  version: "1.18"
+  version: "1.19"
 
 nodeGroups:
   - name: ng-stateless-1001
-    instanceType: m5.large
-    desiredCapacity: 0
-    maxSize: 0
-    minSize: 0
+    instanceType: t3.medium
+    desiredCapacity: 3
+    maxSize: 3
+    minSize: 3
     privateNetworking: true
     ssh:
       allow: true # will use ~/.ssh/id_rsa.pub as the default ssh key
@@ -21,9 +21,9 @@ nodeGroups:
         autoScaler: true
   - name: ng-appmesh-1005
     instanceType: m5.large
-    desiredCapacity: 3
-    minSize: 3
-    maxSize: 5
+    desiredCapacity: 0
+    minSize: 0
+    maxSize: 0
     iam:
       withAddonPolicies:
         albIngress: true
@@ -71,7 +71,7 @@ iam:
     - "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
     tags:
       Owner: "Kenichi Shibata"
-      Team: "The A Team"
+      Team: "Security"
   - metadata:
       name: cluster-autoscaler
       namespace: kube-system
