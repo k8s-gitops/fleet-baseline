@@ -5,7 +5,7 @@ metadata:
   namespace: dev
 spec:
   interval: 5m0s
-  path: ./myapp/nginx
+  path: ./testapp/nginx
   prune: true
   sourceRef:
     kind: GitRepository
